@@ -14,14 +14,14 @@
         <img class="w-72" src="/assets/logo.jpg" alt="logo">
         <div class="bg-white p-5 w-72">
             <p class="text-xs text-center mb-4 font-semibold text-[#888b91]">Bienvenido ingresa con tu cuenta</p>
-            <form class="flex flex-col" action="" method="$_POST">
+            <form class="flex flex-col" action="/login" method="post">
                 <div class="flex flex-row-reverse">
                     <i class="fa-solid fa-envelope absolute mt-1.5 mr-2.5 text-xs" style="color: #828282;"></i>
-                    <input class="text-xs border-2 w-full px-2 py-1 rounded" type="email" name="" placeholder="Email">
+                    <input class="text-xs border-2 w-full px-2 py-1 rounded" type="email" name="email" placeholder="Email">
                 </div>
                 <div class="my-2.5 flex flex-row-reverse">
                     <i class="fa-solid fa-lock absolute mt-1.5 mr-2.5 text-xs" style="color: #828282;"></i>
-                    <input class="text-xs border-2 w-full px-2 py-1 rounded" type="password" name="" placeholder="Password">
+                    <input class="text-xs border-2 w-full px-2 py-1 rounded" type="password" name="password" placeholder="Password">
                 </div>
                 <button class="bg-[#007aff] py-2 px-4 rounded text-xs text-white self-end" type="submit">Ingresar</button>
             </form>
