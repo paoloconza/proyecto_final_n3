@@ -20,7 +20,13 @@
             </div>
             <hr class="mx-0.5">
             <div class="p-3">
-                <p class="text-white">admin</p>
+                <?php
+                session_start();
+                $user = $_SESSION["user"];
+                $rol = $_SESSION["user"]["rol_id"];
+
+                echo '<p class="text-white">' . $user["nombre"] . '</p>';
+                ?>
                 <p class="text-white text-sm">administrador</p>
             </div>
             <hr class="mx-0.5">
@@ -72,7 +78,7 @@
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700">
                                     <i class="fas fa-cog mr-2"></i>Settings
                                 </a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700">
+                                <a href="/index.php" class="block px-4 py-2 text-sm text-gray-700">
                                     <i class="fas fa-sign-out-alt mr-2"></i>Sign out
                                 </a>
                             </div>
@@ -82,9 +88,12 @@
             </nav>
 
             <div class="w-full border-t flex flex-col">
-                <h2 class="text-gray-700 m-3 font-semibold text-2xl">Lista de Maestros</h2>
+                <h2 class="text-gray-700 m-3 font-semibold text-2xl">Lista de Clases</h2>
                 <div class="w-11/12 flex-grow p-6 text-gray-700 bg-white mx-3">
-                    <p class="font-semibold">Información de Maestros</p>
+                    <p class="font-semibold">Información de Clases</p>
+                    <?php
+                    // var_dump($clases)
+                    ?>
                     <hr>
                     <table class="min-w-full">
                         <thead>
@@ -99,15 +108,13 @@
                         <tbody>
                             <?php
                             $counter = 1; // Inicializa el contador
-                            foreach ($maestros as $maestro) {
+                            foreach ($clases as $clase) {
                             ?>
                                 <tr class="border-y-2">
-                                    <td><?= $counter++?></td>
-                                    <td><?= $maestro["correo"] ?></td>
-                                    <td><?= $maestro["nombre"], " " . $maestro["apellido"] ?></td>
-                                    <td><?= $maestro["direccion"] ?></td>
-                                    <td><?= $maestro["fecha_nacimiento"] ?></td>
-                                    <td><?= $maestro["dni"] ?></td>
+                                    <td><?= $counter++ ?></td>
+                                    <td><?= $clase["clase"] ?></td>
+                                    <td><?= $clase["maestro"] ?></td>
+                                    <td><?= $clase["alumnosinscritos"] ?></td>
                                     <td class="flex">
                                         <a class="mr-5" href="/alumnos/edit?id=<?= $maestro["id_usuario"] ?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
                                         <form action="/alumnos/delete" method="post">

@@ -27,8 +27,8 @@
 
                 if ($rol == 1) {
                     // var_dump($user);
-                    echo '<p class="text-white">' . $user["nombre"] . '</p>
-                    <p class="text-white text-sm">administrador</p>
+                    echo '<p class="text-white">' . $user["nombre"] . " " . $user["apellido"] . '</p>
+                    <p class="text-white text-sm">Administrador</p>
                   </div>
                   <hr class="mx-0.5">
             
@@ -53,8 +53,8 @@
                 }
                 if ($rol == 2) {
 
-                    echo '<p class="text-white">' . $user["nombre"] . '</p>
-                    <p class="text-white text-sm">administrador</p>
+                    echo '<p class="text-white">' . $user["nombre"] . " " . $user["apellido"] . '</p>
+                    <p class="text-white text-sm">Maestro</p>
                   </div>
                   <hr class="mx-0.5">
             
@@ -68,18 +68,18 @@
                 }
                 if ($rol == 3) {
 
-                    echo '<p class="text-white">' . $user["nombre"] . '</p>
-                    <p class="text-white text-sm">administrador</p>
+                    echo '<p class="text-white">' . $user["nombre"] . " " . $user["apellido"] . '</p>
+                    <p class="text-white text-sm">Alumno</p>
                   </div>
                   <hr class="mx-0.5">
             
                   <nav class="text-white text-sm pt-3">
                     <p class="text-center">MENU ALUMNOS</p>
-                    <a href="" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                    <a href="/calificaciones" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
                     <i class="fa-solid fa-laptop-file mr-3"></i>
                       Ver Calificaciones
                     </a>
-                    <a href="" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                    <a href="/administrarClase" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
                       <i class="fa-solid fa-chalkboard-user mr-3"></i>
                       Administra tu clases
                     </a>';
@@ -113,7 +113,7 @@
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700">
                                     <i class="fas fa-cog mr-2"></i>Settings
                                 </a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700">
+                                <a href="/index.php" class="block px-4 py-2 text-sm text-gray-700">
                                     <i class="fas fa-sign-out-alt mr-2"></i>Sign out
                                 </a>
                             </div>

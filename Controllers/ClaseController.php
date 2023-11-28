@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"] . "/Models/Model.php";
 
-class MaestroController
+class ClaseController
 {
     protected $model;
 
@@ -13,9 +13,9 @@ class MaestroController
     public function index()
     {
 
-        $maestros = $this->model->where("rol_id", "=", 2);
+        $clases = $this->model->getClasesInscritos();
 
-        include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/readMaestro.php";
+        include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/readClase.php";
     }
 
     // public function edit($id)

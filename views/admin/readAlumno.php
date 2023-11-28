@@ -20,7 +20,13 @@
             </div>
             <hr class="mx-0.5">
             <div class="p-3">
-                <p class="text-white">admin</p>
+            <?php
+                session_start();
+                $user = $_SESSION["user"];
+                $rol = $_SESSION["user"]["rol_id"];
+
+                    echo '<p class="text-white">' . $user["nombre"] . '</p>';                
+                ?>
                 <p class="text-white text-sm">administrador</p>
             </div>
             <hr class="mx-0.5">
@@ -72,7 +78,7 @@
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700">
                                     <i class="fas fa-cog mr-2"></i>Settings
                                 </a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700">
+                                <a href="/index.php" class="block px-4 py-2 text-sm text-gray-700">
                                     <i class="fas fa-sign-out-alt mr-2"></i>Sign out
                                 </a>
                             </div>

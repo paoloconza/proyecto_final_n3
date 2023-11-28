@@ -21,34 +21,25 @@
             <hr class="mx-0.5">
             <div class="p-3">
                 <?php
-                session_start();
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
                 $user = $_SESSION["user"];
-                $rol = $_SESSION["user"]["rol_id"];
-
-                echo '<p class="text-white">' . $user["nombre"] . '</p>';
+                echo '<p class="text-white">' . $user["nombre"] . " " . $user["apellido"] . '</p>';
                 ?>
                 <p class="text-white text-sm">administrador</p>
             </div>
             <hr class="mx-0.5">
-
             <nav class="text-white text-sm pt-3">
-                <p class="text-center">MENU ADMINISTRACION</p>
-                <a href="/permisos" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                    <i class="fa-solid fa-user-gear mr-3"></i>
-                    Permisos
-                </a>
-                <a href="/maestros" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                    <i class="fa-solid fa-chalkboard-user mr-3"></i>
-                    Maestro
-                </a>
-                <a href="/alumnos" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                    <i class="fa-solid fa-user-graduate mr-3"></i>
-                    Alumnos
-                </a>
-                <a href="/clases" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                    <i class="fa-solid fa-chart-bar mr-3"></i>
-                    Clases
-                </a>
+                    <p class="text-center">MENU ALUMNOS</p>
+                    <a href="/calificaciones" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                    <i class="fa-solid fa-laptop-file mr-3"></i>
+                      Ver Calificaciones
+                    </a>
+                    <a href="/administrarClase" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                      <i class="fa-solid fa-chalkboard-user mr-3"></i>
+                      Administra tu clases
+                    </a>';
             </nav>
         </aside>
 
@@ -88,38 +79,32 @@
             </nav>
 
             <div class="w-full border-t flex flex-col">
-                <h2 class="text-gray-700 m-3 font-semibold text-2xl">Lista de Maestros</h2>
+                <h2 class="text-gray-700 m-3 font-semibold text-2xl">Calificaciones y mensajes de tus clases</h2>
                 <div class="w-11/12 flex-grow p-6 text-gray-700 bg-white mx-3">
-                    <p class="font-semibold">Información de Maestros</p>
+                    <p class="font-semibold">Calificaciones y mensajes de tus clases</p>
                     <hr>
                     <table class="min-w-full">
                         <thead>
                             <tr>
                                 <th class="text-left">#</th>
-                                <th class="text-left">Nombre</th>
-                                <th class="text-left">Email</th>
-                                <th class="text-left">Direccion</th>
-                                <th class="text-left">Fec. de Nacimiento</th>
-                                <th class="text-left">Clase Asignada</th>
-                                <th class="text-left">Actions</th>
+                                <th class="text-left">Nombre de la clase</th>
+                                <th class="text-left">Calificacion</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $counter = 1; // Inicializa el contador
-                            foreach ($maestros as $maestro) {
+                            foreach ($calificaciones as $calificacion) {
                             ?>
                                 <tr class="border-y-2">
                                     <td><?= $counter++ ?></td>
-                                    <td><?= $maestro["nombre"] ?></td>
-                                    <td><?= $maestro["correo"] ?></td>
-                                    <td><?= $maestro["direccion"] ?></td>
-                                    <td><?= $maestro["fecha_nacimiento"] ?></td>
-                                    <td><?= $maestro["clase"] ?></td>
+                                    <td><?= $calificacion["clase"] ?></td>
+                                    <td><?= $calificacion["calificacion"] ?></td>
+
                                     <td class="flex">
-                                        <a class="mr-5" href="/alumnos/edit?id=<?= $maestro["id_usuario"] ?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
+                                        <a class="mr-5" href="/alumnos/edit?id=<?= $alumno["id_usuario"] ?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
                                         <form action="/alumnos/delete" method="post">
-                                            <input type="number" hidden value="<?= $maestro["id_usuario"] ?>" name="id">
+                                            <input type="number" hidden value="<?= $alumno["id_usuario"] ?>" name="id">
                                             <button type="submit"><i class="fa-regular fa-trash-can" style="color: #bc5c65;"></i></button>
                                         </form>
                                     </td>

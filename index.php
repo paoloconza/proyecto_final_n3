@@ -2,11 +2,19 @@
 require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/LoginController.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/AlumnoController.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/MaestroController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/ClaseController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/PermisoController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/CalificacionController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/AdmClaseController.php");
 
 // ENRUTADOR
 $loginController = new LoginController();
 $alumnoController = new AlumnoController();
 $maestroController = new MaestroController();
+$claseController = new ClaseController();
+$permisoController = new PermisoController();
+$calificacionController = new CalificacionController();
+$admclaseController = new AdmClaseController();
 
 // Dividimos la ruta por el signo "?" para no leer los query params. Ejem: /clientes?id=1
 $route = explode("?", $_SERVER["REQUEST_URI"]);
@@ -46,6 +54,22 @@ if ($method === "GET") {
 
         case '/maestros':
             $maestroController->index();
+            break;
+
+        case '/clases':
+            $claseController->index();
+            break;
+
+        case '/permisos':
+            $permisoController->index();
+            break;
+
+        case '/calificaciones':
+            $calificacionController->index();
+            break;
+
+        case '/administrarClase':
+            $admclaseController->index();
             break;
 
         default:
