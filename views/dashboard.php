@@ -34,11 +34,11 @@
             
                   <nav class="text-white text-sm pt-3">
                     <p class="text-center">MENU ADMINISTRACION</p>
-                    <a href="" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                    <a href="/permisos" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
                       <i class="fa-solid fa-user-gear mr-3"></i>
                       Permisos
                     </a>
-                    <a href="" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                    <a href="/maestros" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
                       <i class="fa-solid fa-chalkboard-user mr-3"></i>
                       Maestros
                     </a>
@@ -46,7 +46,7 @@
                       <i class="fa-solid fa-user-graduate mr-3"></i>
                       Alumnos
                     </a>
-                    <a href="" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                    <a href="/clases" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
                       <i class="fa-solid fa-chart-bar mr-3"></i>
                       Clases
                     </a>';

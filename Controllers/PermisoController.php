@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"] . "/Models/Model.php";
 
-class AlumnoController
+class MaestroController
 {
     protected $model;
 
@@ -13,17 +13,16 @@ class AlumnoController
     public function index()
     {
 
-        $alumnos = $this->model->where("rol_id", "=", 3);
-        // var_dump($empleados);
+        $maestros = $this->model->where("rol_id", "=", 2);
 
-        include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/readAlumno.php";
+        include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/readMaestro.php";
     }
 
-    public function edit($id)
-    {
-        $alumnos = $this->model->find($id);
-        include $_SERVER["DOCUMENT_ROOT"] . "/views/empleados/edit.php";
-    }
+    // public function edit($id)
+    // {
+    //     $alumnos = $this->model->find($id);
+    //     include $_SERVER["DOCUMENT_ROOT"] . "/views/empleados/edit.php";
+    // }
 
     // public function update($request)
     // {

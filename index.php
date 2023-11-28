@@ -1,9 +1,12 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/LoginController.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/AlumnoController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/MaestroController.php");
+
 // ENRUTADOR
 $loginController = new LoginController();
 $alumnoController = new AlumnoController();
+$maestroController = new MaestroController();
 
 // Dividimos la ruta por el signo "?" para no leer los query params. Ejem: /clientes?id=1
 $route = explode("?", $_SERVER["REQUEST_URI"]);
@@ -33,8 +36,16 @@ if ($method === "GET") {
             $loginController->dashboard();
             break;
 
+        // case '/alumnos':
+        //     $alumnoController->edit($_GET[$id]);
+        //     break;
+
         case '/alumnos':
             $alumnoController->index();
+            break;
+
+        case '/maestros':
+            $maestroController->index();
             break;
 
         default:
