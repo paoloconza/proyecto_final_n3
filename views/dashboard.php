@@ -127,7 +127,7 @@
                 <h2 class="text-gray-700 m-3 font-semibold text-2xl">Dashboard</h2>
                 <div class="w-4/6 flex-grow p-6 text-gray-700 bg-white ml-3">
                     <p>Bienvenido</p>
-                    <p>Seleciona la opcion que quieras realizar en las pestañas del menu de la izquierda</p>
+                    <p>Selecciona la opcion que quieras realizar en las pestañas del menu de la izquierda</p>
                 </div>
             </div>
         </div>

@@ -90,7 +90,13 @@
             <div class="w-full border-t flex flex-col">
                 <h2 class="text-gray-700 m-3 font-semibold text-2xl">Lista de Maestros</h2>
                 <div class="w-11/12 flex-grow p-6 text-gray-700 bg-white mx-3">
-                    <p class="font-semibold">Información de Maestros</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <p class="font-semibold">Información de Maestros</p>
+                        <!-- Modal toggle -->
+                        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-normal rounded text-sm px-4 py-2 text-center" type="button">
+                            Agregar Maestro
+                        </button>
+                    </div>
                     <hr>
                     <table class="min-w-full">
                         <thead>
@@ -133,6 +139,10 @@
             </div>
         </div>
     </main>
+
+    <?php
+    include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalCreateMaestro.php";
+    ?>
 
     <script src="main.js"></script>
 
