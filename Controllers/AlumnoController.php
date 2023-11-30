@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"] . "/Models/Model.php";
+// require_once $_SERVER["DOCUMENT_ROOT"] . "/Models/User.php";
 
 class AlumnoController
 {
@@ -19,25 +20,25 @@ class AlumnoController
         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/readAlumno.php";
     }
 
-    public function edit($id)
-    {
-        $alumnos = $this->model->find($id);
-        include $_SERVER["DOCUMENT_ROOT"] . "/views/empleados/edit.php";
-    }
-
-    // public function update($request)
+    // public function edit($id)
     // {
-    //     $this->model->update($request);
-
-    //     header("Location: /empleados");
+    //     $empleado=$this->model->find($id);
+    //     include $_SERVER["DOCUMENT_ROOT"] . "/views/empleados/edit.php";
     // }
 
-    public function delete($id)
+    public function update($request)
     {
-
-        $this->model->destroy($id);
+        $this->model->update($request);
 
         header("Location: /alumnos");
     }
+
+    // public function delete($id)
+    // {
+        
+    //     $this->model->destroy($id);
+
+    //     header("Location: /empleados");
+    // }
 
 }

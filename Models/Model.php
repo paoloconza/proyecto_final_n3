@@ -132,7 +132,7 @@ class Model
      */
     public function find($id)
     {
-        $res = $this->db->query("select * from {$this->table} where id = $id");
+        $res = $this->db->query("select * from {$this->table} where id_usuario = $id");
         $data = $res->fetch_assoc();
 
         return $data;
@@ -144,29 +144,50 @@ class Model
      * @param array $data Arreglo asociativo con los datos a ingresar.
      * @return array Arreglo con los datos de la fila ingresada.
      */
+    // public function create($data)
+    // {
+    //     try {
+    //         // Esto hace que sin importar los pares de clave y valor de la variable $data, el $query sea reutilizable.
+    //         $keys = array_keys($data);
+    //         $keysString = implode(", ", $keys);
+
+    //         $values = array_values($data);
+    //         $valuesString = implode("', '", $values);
+    //         $query = "insert into {$this->table}($keysString) values ('$valuesString')";
+
+    //         $res = $this->db->query($query);
+
+    //         if ($res) {
+    //             $ultimoId = $this->db->insert_id;
+    //             $data = $this->find($ultimoId);
+
+    //             return $data;
+    //         } else {
+    //             return "No se pudo crear el cliente";
+    //         }
+    //     } catch (mysqli_sql_exception $e) {
+    //         echo "Error: " . $e->getMessage();
+    //     }
+    // }
+
     public function create($data)
     {
-        try {
-            // Esto hace que sin importar los pares de clave y valor de la variable $data, el $query sea reutilizable.
-            $keys = array_keys($data);
-            $keysString = implode(", ", $keys);
+        $dni = $data["dni"];
+        $correo = $data["email"];
+        $nombre = $data["nombre"];
+        $apellido = $data["apellido"];
+        $direccion = $data["direccion"];
+        $fecha = $data["fecha"];
+        $res = $this->db->query("insert into usuarios(nombre, apellido, dni, fecha_nacimiento, direccion, correo, contrasena, rol_id) values ('$nombre', '$apellido', '$dni', '$fecha', '$direccion', '$correo', 'alumno', '3')");
 
-            $values = array_values($data);
-            $valuesString = implode("', '", $values);
-            $query = "insert into {$this->table}($keysString) values ('$valuesString')";
+        if ($res) {
+            $ultimoId = $this->db->insert_id;
+            $res = $this->db->query("select * from usuarios where id_usuario = $ultimoId");
+            $data = $res->fetch_assoc();
 
-            $res = $this->db->query($query);
-
-            if ($res) {
-                $ultimoId = $this->db->insert_id;
-                $data = $this->find($ultimoId);
-
-                return $data;
-            } else {
-                return "No se pudo crear el cliente";
-            }
-        } catch (mysqli_sql_exception $e) {
-            echo "Error: " . $e->getMessage();
+            return $data;
+        } else {
+            return "No se pudo crear el cliente";
         }
     }
 
@@ -175,19 +196,43 @@ class Model
      *
      * @param array $data Arreglo asociatvo con los datos a actualizar.
      */
+    // public function update($data)
+    // {
+    //     $dni = $data["dni"];
+    //     $correo = $data["email"];
+    //     $nombre = $data["nombre"];
+    //     $apellido = $data["apellido"];
+    //     $direccion = $data["direccion"];
+    //     $fecha = $data["fecha"];
+    //     $res = $this->db->query("update usuarios set nombre = '$nombre', apellido = '$apellido', dni = '$dni', fecha_nacimiento = '$fecha', direccion = '$direccion', correo = '$correo' where id_usuario = {$data["id"]}");
+    // }
+
     public function update($data)
     {
-        // Esto hace que sin importar los pares de clave y valor de la variable $data, el $query sea reutilizable.
-        $updatePairs = [];
-
-        foreach ($data as $key => $value) {
-            $updatePairs[] = "$key = '$value'";
-        }
-
         session_start();
-        $query = "update {$this->table} set " . implode(", ", $updatePairs) . "where id = {$_SESSION["clienteid_edit"]}";
-        $this->db->query($query);
+
+        // $res = $this->db->query("
+        // update usuarios set 
+        //     nombre = '{$data["nombre"]}',
+        //     email = '{$data["email"]}',
+        //     direccion = '{$data["direccion"]}',
+        //     telefono = '{$data["telefono"]}'
+        // where id = {$_SESSION["empleado_id"]}
+        // ");
+
+        // Verifica si los datos necesarios están presentes antes de intentar acceder a ellos
+        var_dump($_SESSION["id_usuario"]);
+        $dni = $data["dni"];
+        $correo = $data["email"];
+        $nombre = $data["nombre"];
+        $apellido = $data["apellido"];
+        $direccion = $data["direccion"];
+        $fecha = $data["fecha"];
+        // $id = $data["id"];
+
+        $res = $this->db->query("UPDATE usuarios SET nombre = '$nombre', apellido = '$apellido', dni = '$dni', fecha_nacimiento = '$fecha', direccion = '$direccion', correo = '$correo' WHERE id_usuario = {$_SESSION["id_usuario"]}");
     }
+
 
     /**
      * Método para eliminar un registro en la tabla.
