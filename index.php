@@ -28,6 +28,10 @@ if ($method === "POST") {
             $loginController->login($_POST["email"]);
             break;
 
+        case '/alumnos/delete':
+            $alumnoController->delete($_POST["id"]);
+            break;
+
         default:
             echo "NO ENCONTRAMOS LA RUTA.";
             break;

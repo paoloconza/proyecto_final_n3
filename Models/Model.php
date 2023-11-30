@@ -100,10 +100,21 @@ class Model
     {
         session_start();
         $user = $_SESSION["user"];
-        $query = "select cl.clase, c.calificacion
-        from calificaciones c
-        join clases cl on c.clase_id = cl.id
-        where c.usuario_id = '" . $user["id_usuario"] . "'";
+        $query = "select
+        c.id,
+        cl.clase,
+        c.calificacion,
+        mc.mensaje_maestro
+    from
+        calificaciones c
+    join
+        clases cl on
+        c.clase_id = cl.id
+    left join
+        maestros_clases mc on
+        c.clase_id = mc.clase_id
+    where
+        c.usuario_id = '" . $user["id_usuario"] . "'";
 
         $res = $this->db->query($query);
         $data = $res->fetch_all(MYSQLI_ASSOC);
@@ -185,7 +196,7 @@ class Model
      */
     public function destroy($id)
     {
-        $this->db->query("delete from {$this->table} where id = $id");
+        $this->db->query("delete from {$this->table} where id_usuario = $id");
     }
 
     public function where($column, $operator, $value)

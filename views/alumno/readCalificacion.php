@@ -39,7 +39,7 @@
                     <a href="/administrarClase" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
                       <i class="fa-solid fa-chalkboard-user mr-3"></i>
                       Administra tu clases
-                    </a>';
+                    </a>
             </nav>
         </aside>
 
@@ -89,6 +89,7 @@
                                 <th class="text-left">#</th>
                                 <th class="text-left">Nombre de la clase</th>
                                 <th class="text-left">Calificacion</th>
+                                <th class="text-left">Mensajes</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -100,6 +101,7 @@
                                     <td><?= $counter++ ?></td>
                                     <td><?= $calificacion["clase"] ?></td>
                                     <td><?= $calificacion["calificacion"] ?></td>
+                                    <td><?= $calificacion["mensaje_maestro"] ?></td>
 
                                     <td class="flex">
                                         <a class="mr-5" href="/alumnos/edit?id=<?= $alumno["id_usuario"] ?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>

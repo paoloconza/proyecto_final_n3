@@ -32,12 +32,12 @@ class AlumnoController
     //     header("Location: /empleados");
     // }
 
-    // public function delete($id)
-    // {
+    public function delete($id)
+    {
 
-    //     $this->model->destroy($id);
+        $this->model->destroy($id);
 
-    //     header("Location: /empleados");
-    // }
+        header("Location: /alumnos");
+    }
 
 }
