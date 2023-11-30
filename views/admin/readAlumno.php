@@ -88,18 +88,64 @@
             </nav>
 
             <div class="w-full border-t flex flex-col">
-                <div class="w-full flex-grow p-6 text-gray-700">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis fuga quibusdam autem? Facere impedit, nisi
-                        assumenda, labore non ea quasi quia mollitia voluptate incidunt totam eius doloribus dicta minima dolorem!
-                        <?php
-                        var_dump($alumnos);
-                        ?>
-
-                    </p>
+                <h2 class="text-gray-700 m-3 font-semibold text-2xl">Lista de Alumnos</h2>
+                <div class="w-11/12 flex-grow p-6 text-gray-700 bg-white mx-3">
+                    <div class="flex justify-between items-center mb-4">
+                        <p class="font-semibold">Información de alumnos</p>
+                        <!-- Modal toggle -->
+                        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-normal rounded text-sm px-4 py-2 text-center" type="button">
+                            Agregar Alumno
+                        </button>
+                    </div>
+                    <hr>
+                    <table class="min-w-full">
+                        <thead>
+                            <tr>
+                                <th class="text-left">#</th>
+                                <th class="text-left">DNI</th>
+                                <th class="text-left">Nombre</th>
+                                <th class="text-left">Correo</th>
+                                <th class="text-left">Direccion</th>
+                                <th class="text-left">Fec. de Nacimiento</th>
+                                <th class="text-left">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $counter = 1; // Inicializa el contador
+                            foreach ($alumnos as $alumno) {
+                            ?>
+                                <tr class="border-y-2 ">
+                                    <td><?= $counter++ ?></td>
+                                    <td><?= $alumno["dni"] ?></td>
+                                    <td><?= $alumno["nombre"], " " . $alumno["apellido"] ?></td>
+                                    <td><?= $alumno["correo"] ?></td>
+                                    <td><?= $alumno["direccion"] ?></td>
+                                    <td><?= $alumno["fecha_nacimiento"] ?></td>
+                                    <td class="flex">
+                                        <a data-modal-target="authentication-modal2" data-modal-toggle="authentication-modal2" class="mr-5" href="/alumnos/edit?id=<?= $alumno["id_usuario"]?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
+                                        <!-- <form class="mr-5" action="/alumnos/edit" method="post">
+                                            <input type="number" hidden value="<?= $alumno["id_usuario"] ?>" name="id">
+                                            <button data-modal-target="authentication-modal2" data-modal-toggle="authentication-modal" type="submit"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></button>
+                                        </form> -->
+                                        <form action="/alumnos/delete" method="post">
+                                            <input type="number" hidden value="<?= $alumno["id_usuario"] ?>" name="id">
+                                            <button type="submit"><i class="fa-regular fa-trash-can" style="color: #bc5c65;"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </main>
+<?php
+    include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalCreateAlumno.php";
+?>
 
     <script src="main.js"></script>
 

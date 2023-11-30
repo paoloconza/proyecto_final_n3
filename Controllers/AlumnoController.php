@@ -20,11 +20,12 @@ class AlumnoController
         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/readAlumno.php";
     }
 
-    // public function edit($id)
-    // {
-    //     $empleado=$this->model->find($id);
-    //     include $_SERVER["DOCUMENT_ROOT"] . "/views/empleados/edit.php";
-    // }
+    public function edit($id)
+    {
+        $alumno = $this->model->find($id);
+
+        include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalEdit.php";
+    }
 
     public function update($request)
     {
@@ -33,12 +34,17 @@ class AlumnoController
         header("Location: /alumnos");
     }
 
-    // public function delete($id)
-    // {
-        
-    //     $this->model->destroy($id);
+    public function store($request)
+    {
+        $response = $this->model->create($request);
+        header("Location: /alumnos");
+    }
 
-    //     header("Location: /empleados");
-    // }
+    public function delete($id)
+    {
 
+        $this->model->destroy($id);
+
+        header("Location: /alumnos");
+    }
 }
