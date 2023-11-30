@@ -17,7 +17,7 @@
                 </div>
                 <!-- Modal body -->
                 <div class="p-2.5">
-                    <form class="space-y-2.5" action="/alumnos/create">
+                    <form class="space-y-2.5" action="/alumnos/create" method="post">
                         <div>
                             <label for="dni" class="block mb-1 text-xs font-medium text-gray-900 ">DNI</label>
                             <input type="text" name="dni" id="dni" class="bg-gray-50 border border-gray-300 text-gray-900 text-[11px] rounded focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1" placeholder="Ingrese tu DNI">

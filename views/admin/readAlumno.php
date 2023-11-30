@@ -123,7 +123,11 @@
                                     <td><?= $alumno["direccion"] ?></td>
                                     <td><?= $alumno["fecha_nacimiento"] ?></td>
                                     <td class="flex">
-                                        <a class="mr-5" href="/alumnos/edit?id=<?= $alumno["id_usuario"] ?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
+                                        <a data-modal-target="authentication-modal2" data-modal-toggle="authentication-modal2" class="mr-5" href="/alumnos/edit?id=<?= $alumno["id_usuario"]?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
+                                        <!-- <form class="mr-5" action="/alumnos/edit" method="post">
+                                            <input type="number" hidden value="<?= $alumno["id_usuario"] ?>" name="id">
+                                            <button data-modal-target="authentication-modal2" data-modal-toggle="authentication-modal" type="submit"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></button>
+                                        </form> -->
                                         <form action="/alumnos/delete" method="post">
                                             <input type="number" hidden value="<?= $alumno["id_usuario"] ?>" name="id">
                                             <button type="submit"><i class="fa-regular fa-trash-can" style="color: #bc5c65;"></i></button>
@@ -142,6 +146,7 @@
 <?php
     include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalCreate.php";
 ?>
+
     <script src="main.js"></script>
 
 </body>

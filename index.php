@@ -14,14 +14,14 @@ $maestroController = new MaestroController();
 $claseController = new ClaseController();
 $permisoController = new PermisoController();
 $calificacionController = new CalificacionController();
-$admclaseController = new AdmClaseController();
+$admClaseController = new AdmClaseController();
 
 // Dividimos la ruta por el signo "?" para no leer los query params. Ejem: /clientes?id=1
 $route = explode("?", $_SERVER["REQUEST_URI"]);
 
 $method = $_SERVER["REQUEST_METHOD"];
 
-
+// var_dump($_POST);
 if ($method === "POST") {
     switch ($route[0]) {
         case '/login':
@@ -31,6 +31,19 @@ if ($method === "POST") {
         case '/alumnos/delete':
             $alumnoController->delete($_POST["id"]);
             break;
+
+        case '/alumnos/create':
+            $alumnoController->store($_POST);
+            break;
+
+        case '/alumnos/update':
+            // var_dump($_POST);
+            $alumnoController->update($_POST);
+            break;
+
+            // case '/alumnos/edit':
+            //     $alumnoController->edit($_POST);
+            //     break;
 
         default:
             echo "NO ENCONTRAMOS LA RUTA.";
@@ -48,9 +61,9 @@ if ($method === "GET") {
             $loginController->dashboard();
             break;
 
-        // case '/alumnos':
-        //     $alumnoController->edit($_GET[$id]);
-        //     break;
+        case '/alumnos/edit':
+            $alumnoController->edit($_GET["id"]);
+            break;
 
         case '/alumnos':
             $alumnoController->index();
