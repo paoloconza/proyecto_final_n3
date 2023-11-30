@@ -21,34 +21,25 @@
             <hr class="mx-0.5">
             <div class="p-3">
                 <?php
-                session_start();
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
                 $user = $_SESSION["user"];
-                $rol = $_SESSION["user"]["rol_id"];
-
-                echo '<p class="text-white">' . $user["nombre"] . '</p>';
+                echo '<p class="text-white">' . $user["nombre"] . " " . $user["apellido"] . '</p>';
                 ?>
                 <p class="text-white text-sm">administrador</p>
             </div>
             <hr class="mx-0.5">
-
             <nav class="text-white text-sm pt-3">
-                <p class="text-center">MENU ADMINISTRACION</p>
-                <a href="/permisos" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                    <i class="fa-solid fa-user-gear mr-3"></i>
-                    Permisos
-                </a>
-                <a href="/maestros" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                    <i class="fa-solid fa-chalkboard-user mr-3"></i>
-                    Maestro
-                </a>
-                <a href="/alumnos" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                    <i class="fa-solid fa-user-graduate mr-3"></i>
-                    Alumnos
-                </a>
-                <a href="/clases" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
-                    <i class="fa-solid fa-chart-bar mr-3"></i>
-                    Clases
-                </a>
+                    <p class="text-center">MENU ALUMNOS</p>
+                    <a href="/calificaciones" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                    <i class="fa-solid fa-laptop-file mr-3"></i>
+                      Ver Calificaciones
+                    </a>
+                    <a href="/administrarClase" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6">
+                      <i class="fa-solid fa-chalkboard-user mr-3"></i>
+                      Administra tu clases
+                    </a>
             </nav>
         </aside>
 
@@ -88,40 +79,30 @@
             </nav>
 
             <div class="w-full border-t flex flex-col">
-                <h2 class="text-gray-700 m-3 font-semibold text-2xl">Lista de Alumnos</h2>
+                <h2 class="text-gray-700 m-3 font-semibold text-2xl">Calificaciones y mensajes de tus clases</h2>
                 <div class="w-11/12 flex-grow p-6 text-gray-700 bg-white mx-3">
-                    <div class="flex justify-between items-center mb-4">
-                        <p class="font-semibold">Información de alumnos</p>
-                        <!-- Modal toggle -->
-                        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-normal rounded text-sm px-4 py-2 text-center" type="button">
-                            Agregar Alumno
-                        </button>
-                    </div>
+                    <p class="font-semibold">Calificaciones y mensajes de tus clases</p>
                     <hr>
                     <table class="min-w-full">
                         <thead>
                             <tr>
                                 <th class="text-left">#</th>
-                                <th class="text-left">DNI</th>
-                                <th class="text-left">Nombre</th>
-                                <th class="text-left">Correo</th>
-                                <th class="text-left">Direccion</th>
-                                <th class="text-left">Fec. de Nacimiento</th>
-                                <th class="text-left">Actions</th>
+                                <th class="text-left">Nombre de la clase</th>
+                                <th class="text-left">Calificacion</th>
+                                <th class="text-left">Mensajes</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $counter = 1; // Inicializa el contador
-                            foreach ($alumnos as $alumno) {
+                            foreach ($calificaciones as $calificacion) {
                             ?>
-                                <tr class="border-y-2 ">
+                                <tr class="border-y-2">
                                     <td><?= $counter++ ?></td>
-                                    <td><?= $alumno["dni"] ?></td>
-                                    <td><?= $alumno["nombre"], " " . $alumno["apellido"] ?></td>
-                                    <td><?= $alumno["correo"] ?></td>
-                                    <td><?= $alumno["direccion"] ?></td>
-                                    <td><?= $alumno["fecha_nacimiento"] ?></td>
+                                    <td><?= $calificacion["clase"] ?></td>
+                                    <td><?= $calificacion["calificacion"] ?></td>
+                                    <td><?= $calificacion["mensaje_maestro"] ?></td>
+
                                     <td class="flex">
                                         <a class="mr-5" href="/alumnos/edit?id=<?= $alumno["id_usuario"] ?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
                                         <form action="/alumnos/delete" method="post">
@@ -139,9 +120,7 @@
             </div>
         </div>
     </main>
-<?php
-    include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalCreate.php";
-?>
+
     <script src="main.js"></script>
 
 </body>

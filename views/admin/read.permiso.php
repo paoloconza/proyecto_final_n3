@@ -20,12 +20,12 @@
             </div>
             <hr class="mx-0.5">
             <div class="p-3">
-                <?php
+            <?php
                 session_start();
                 $user = $_SESSION["user"];
                 $rol = $_SESSION["user"]["rol_id"];
 
-                echo '<p class="text-white">' . $user["nombre"] . '</p>';
+                    echo '<p class="text-white">' . $user["nombre"] . '</p>';                
                 ?>
                 <p class="text-white text-sm">administrador</p>
             </div>
@@ -88,44 +88,34 @@
             </nav>
 
             <div class="w-full border-t flex flex-col">
-                <h2 class="text-gray-700 m-3 font-semibold text-2xl">Lista de Alumnos</h2>
+                <h2 class="text-gray-700 m-3 font-semibold text-2xl">Lista de Permisos</h2>
                 <div class="w-11/12 flex-grow p-6 text-gray-700 bg-white mx-3">
-                    <div class="flex justify-between items-center mb-4">
-                        <p class="font-semibold">Información de alumnos</p>
-                        <!-- Modal toggle -->
-                        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-normal rounded text-sm px-4 py-2 text-center" type="button">
-                            Agregar Alumno
-                        </button>
-                    </div>
+                    <p class="font-semibold">Información de Permisos</p>
                     <hr>
                     <table class="min-w-full">
                         <thead>
                             <tr>
                                 <th class="text-left">#</th>
-                                <th class="text-left">DNI</th>
-                                <th class="text-left">Nombre</th>
-                                <th class="text-left">Correo</th>
-                                <th class="text-left">Direccion</th>
-                                <th class="text-left">Fec. de Nacimiento</th>
-                                <th class="text-left">Actions</th>
+                                <th class="text-left">Email/usuario</th>
+                                <th class="text-left">Permiso</th>
+                                <th class="text-left">Estado</th>
+                                <th class="text-left">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $counter = 1; // Inicializa el contador
-                            foreach ($alumnos as $alumno) {
+                            foreach ($permisos as $permiso) {
                             ?>
-                                <tr class="border-y-2 ">
-                                    <td><?= $counter++ ?></td>
-                                    <td><?= $alumno["dni"] ?></td>
-                                    <td><?= $alumno["nombre"], " " . $alumno["apellido"] ?></td>
-                                    <td><?= $alumno["correo"] ?></td>
-                                    <td><?= $alumno["direccion"] ?></td>
-                                    <td><?= $alumno["fecha_nacimiento"] ?></td>
+                                <tr class="border-y-2">
+                                    <td><?= $counter++?></td>
+                                    <td><?= $permiso["correo"] ?></td>
+                                    <td><?= $permiso["nombre_rol"] ?></td>
+                                    <td><?= $permiso["nombre_rol"] ?></td>
                                     <td class="flex">
-                                        <a class="mr-5" href="/alumnos/edit?id=<?= $alumno["id_usuario"] ?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
+                                        <a class="mr-5" href="/alumnos/edit?id=<?= $maestro["id_usuario"] ?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
                                         <form action="/alumnos/delete" method="post">
-                                            <input type="number" hidden value="<?= $alumno["id_usuario"] ?>" name="id">
+                                            <input type="number" hidden value="<?= $maestro["id_usuario"] ?>" name="id">
                                             <button type="submit"><i class="fa-regular fa-trash-can" style="color: #bc5c65;"></i></button>
                                         </form>
                                     </td>
@@ -139,9 +129,7 @@
             </div>
         </div>
     </main>
-<?php
-    include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalCreate.php";
-?>
+
     <script src="main.js"></script>
 
 </body>

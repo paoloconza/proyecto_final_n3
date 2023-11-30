@@ -33,6 +33,97 @@ class Model
         return $data;
     }
 
+    public function getMaestrosConClases()
+    {
+        $query = "
+        select
+        u.id_usuario,
+        u.nombre,
+        u.correo,
+        u.direccion,
+        u.fecha_nacimiento,
+        c.clase 
+    from
+        usuarios u
+    join
+        maestros_clases mc on
+        u.id_usuario = mc.usuario_id
+    join
+        clases c on
+        mc.clase_id = c.id
+    where
+        u.rol_id = 2;
+    ";
+        $res = $this->db->query($query);
+        $data = $res->fetch_all(MYSQLI_ASSOC);
+
+        return $data;
+    }
+
+    public function getClasesInscritos()
+    {
+        $query = "select
+        c.clase as clase,
+        concat(u_maestro.nombre, ' ', u_maestro.apellido) as maestro,
+        count(ac.usuario_id) as alumnosinscritos
+    from
+        clases c
+    left join
+        maestros_clases mc on
+        c.id = mc.clase_id
+    left join
+        usuarios u_maestro on
+        mc.usuario_id = u_maestro.id_usuario
+    left join
+        alumnos_clases ac on
+        c.id = ac.clase_id
+    group by
+        c.id";
+        $res = $this->db->query($query);
+        $data = $res->fetch_all(MYSQLI_ASSOC);
+
+        return $data;
+    }
+
+    public function getRol()
+    {
+        $query = "select u.correo, r.nombre_rol from usuarios u join roles r on
+        u.rol_id = r.id_rol";
+
+        $res = $this->db->query($query);
+        $data = $res->fetch_all(MYSQLI_ASSOC);
+
+        return $data;
+    }
+
+    public function getCalificaion()
+    {
+        session_start();
+        $user = $_SESSION["user"];
+        $query = "select
+        c.id,
+        cl.clase,
+        c.calificacion,
+        mc.mensaje_maestro
+    from
+        calificaciones c
+    join
+        clases cl on
+        c.clase_id = cl.id
+    left join
+        maestros_clases mc on
+        c.clase_id = mc.clase_id
+    where
+        c.usuario_id = '" . $user["id_usuario"] . "'";
+
+        $res = $this->db->query($query);
+        $data = $res->fetch_all(MYSQLI_ASSOC);
+
+        return $data;
+    }
+
+
+
     /**
      * Método para obtener un registro por su id.
      *
@@ -105,7 +196,7 @@ class Model
      */
     public function destroy($id)
     {
-        $this->db->query("delete from {$this->table} where id = $id");
+        $this->db->query("delete from {$this->table} where id_usuario = $id");
     }
 
     public function where($column, $operator, $value)
