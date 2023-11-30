@@ -41,9 +41,9 @@ if ($method === "POST") {
             $alumnoController->update($_POST);
             break;
 
-            // case '/alumnos/edit':
-            //     $alumnoController->edit($_POST);
-            //     break;
+        case '/administrarClase/create':
+            $inscripcionController->store($_POST["alumno_id"], $_POST["clase_id"]);
+            break;
 
         default:
             echo "NO ENCONTRAMOS LA RUTA.";
@@ -87,6 +87,10 @@ if ($method === "GET") {
 
         case '/administrarClase':
             $admclaseController->index();
+            break;
+
+        case '/delete':
+            $inscripcionController->destroy($_GET["id"]);
             break;
 
         default:

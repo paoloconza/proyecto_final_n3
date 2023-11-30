@@ -144,7 +144,7 @@
         </div>
     </main>
 <?php
-    include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalCreate.php";
+    include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalCreateAlumno.php";
 ?>
 
     <script src="main.js"></script>
