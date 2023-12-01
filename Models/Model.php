@@ -33,33 +33,6 @@ class Model
         return $data;
     }
 
-    public function getMaestrosConClases()
-    {
-        $query = "
-        select
-        u.id_usuario,
-        u.nombre,
-        u.correo,
-        u.direccion,
-        u.fecha_nacimiento,
-        c.clase 
-    from
-        usuarios u
-    join
-        maestros_clases mc on
-        u.id_usuario = mc.usuario_id
-    join
-        clases c on
-        mc.clase_id = c.id
-    where
-        u.rol_id = 2;
-    ";
-        $res = $this->db->query($query);
-        $data = $res->fetch_all(MYSQLI_ASSOC);
-
-        return $data;
-    }
-
     public function getClasesInscritos()
     {
         $query = "select
@@ -144,31 +117,6 @@ class Model
      * @param array $data Arreglo asociativo con los datos a ingresar.
      * @return array Arreglo con los datos de la fila ingresada.
      */
-    // public function create($data)
-    // {
-    //     try {
-    //         // Esto hace que sin importar los pares de clave y valor de la variable $data, el $query sea reutilizable.
-    //         $keys = array_keys($data);
-    //         $keysString = implode(", ", $keys);
-
-    //         $values = array_values($data);
-    //         $valuesString = implode("', '", $values);
-    //         $query = "insert into {$this->table}($keysString) values ('$valuesString')";
-
-    //         $res = $this->db->query($query);
-
-    //         if ($res) {
-    //             $ultimoId = $this->db->insert_id;
-    //             $data = $this->find($ultimoId);
-
-    //             return $data;
-    //         } else {
-    //             return "No se pudo crear el cliente";
-    //         }
-    //     } catch (mysqli_sql_exception $e) {
-    //         echo "Error: " . $e->getMessage();
-    //     }
-    // }
 
     public function create($data)
     {
@@ -196,29 +144,9 @@ class Model
      *
      * @param array $data Arreglo asociatvo con los datos a actualizar.
      */
-    // public function update($data)
-    // {
-    //     $dni = $data["dni"];
-    //     $correo = $data["email"];
-    //     $nombre = $data["nombre"];
-    //     $apellido = $data["apellido"];
-    //     $direccion = $data["direccion"];
-    //     $fecha = $data["fecha"];
-    //     $res = $this->db->query("update usuarios set nombre = '$nombre', apellido = '$apellido', dni = '$dni', fecha_nacimiento = '$fecha', direccion = '$direccion', correo = '$correo' where id_usuario = {$data["id"]}");
-    // }
-
     public function update($data)
     {
         session_start();
-
-        // $res = $this->db->query("
-        // update usuarios set 
-        //     nombre = '{$data["nombre"]}',
-        //     email = '{$data["email"]}',
-        //     direccion = '{$data["direccion"]}',
-        //     telefono = '{$data["telefono"]}'
-        // where id = {$_SESSION["empleado_id"]}
-        // ");
 
         // Verifica si los datos necesarios están presentes antes de intentar acceder a ellos
         var_dump($_SESSION["id_usuario"]);
@@ -228,17 +156,10 @@ class Model
         $apellido = $data["apellido"];
         $direccion = $data["direccion"];
         $fecha = $data["fecha"];
-        // $id = $data["id"];
 
         $res = $this->db->query("UPDATE usuarios SET nombre = '$nombre', apellido = '$apellido', dni = '$dni', fecha_nacimiento = '$fecha', direccion = '$direccion', correo = '$correo' WHERE id_usuario = {$_SESSION["id_usuario"]}");
     }
 
-
-    /**
-     * Método para eliminar un registro en la tabla.
-     *
-     * @param integer $id
-     */
     public function destroy($id)
     {
         $this->db->query("delete from {$this->table} where id_usuario = $id");
@@ -247,6 +168,18 @@ class Model
     public function where($column, $operator, $value)
     {
         $res = $this->db->query("select * from {$this->table} where $column $operator '$value'");
+        $data = $res->fetch_all(MYSQLI_ASSOC);
+        return $data;
+    }
+
+    public function whereMaestroAdmin($column, $operator, $value)
+    {
+
+        $res = $this->db->query("select u.id_usuario, u.nombre, u.apellido, u.fecha_nacimiento, u.direccion, u.correo, u.rol_id, c.clase
+        from usuarios u
+        join clases c on u.clase_id = c.id
+        where u.$column $operator '$value'");
+        // $res = $this->db->query("select * from {$this->table} where $column $operator '$value'");
         $data = $res->fetch_all(MYSQLI_ASSOC);
         return $data;
     }

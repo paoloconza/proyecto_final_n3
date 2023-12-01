@@ -55,12 +55,12 @@
         <div class="w-full flex flex-col h-screen">
 
             <nav class="bg-white">
-                <div class="relative flex items-center justify-between h-12 m-2">
-                    <div class="flex-1 flex items-center justify-center sm:justify-start">
+                <div class="relative flex items-center justify-between h-10 m-2">
+                    <div class="flex-1 flex items-center justify-center  sm:justify-start">
                         <button id="sidebarBtn" class="px-4 py-2 text-gray-700 text-sm rounded-lg hover:bg-gray-200">
-                            <i class="fas fa-bars mr-6"></i>
+                            <i class="fas fa-bars"></i>
                         </button>
-                        <a href="/dashboard">Home</a>
+                        <a class="ml-6" href="/dashboard">Home</a>
                     </div>
                     <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 

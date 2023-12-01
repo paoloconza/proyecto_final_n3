@@ -13,10 +13,12 @@ class MaestroController
     public function index()
     {
 
-        $maestros = $this->model->getMaestrosConClases();
+        $maestros = $this->model->whereMaestroAdmin("rol_id", "=", 2);
+        // var_dump($empleados);
 
         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/readMaestro.php";
     }
+
 
     // public function edit($id)
     // {
