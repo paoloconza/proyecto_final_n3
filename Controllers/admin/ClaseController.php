@@ -14,6 +14,7 @@ class ClaseController
     {
 
         $clases = $this->model->getClasesInscritos();
+        $maestros = $this->model->where("rol_id", "=", 2);
 
         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/readClase.php";
     }
