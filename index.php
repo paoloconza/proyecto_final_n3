@@ -83,6 +83,10 @@ if ($method === "GET") {
             $maestroController->edit($_GET["id"]);
             break;
 
+        case '/clases/edit':
+            $claseController->edit($_GET["id"]);
+            break;
+
         case '/alumnos':
             $alumnoController->index();
             break;

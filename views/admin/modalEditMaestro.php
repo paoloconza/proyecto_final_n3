@@ -27,7 +27,7 @@ $_SESSION["clase_id"] = $maestro["clase_id"];
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
                     <h3 class="text-xl font-semibold text-gray-900 ">
-                        Agregar Alumno
+                        Editar Maestro
                                 <?php 
                                 var_dump($_SESSION["clase_id"]);
                                 ?>

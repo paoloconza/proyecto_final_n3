@@ -19,11 +19,11 @@ class ClaseController
         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/readClase.php";
     }
 
-    // public function edit($id)
-    // {
-    //     $alumnos = $this->model->find($id);
-    //     include $_SERVER["DOCUMENT_ROOT"] . "/views/empleados/edit.php";
-    // }
+    public function edit($id)
+    {
+        // $maestros = $this->model->find($id);
+        include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalEdit.Clase.php";
+    }
 
     // public function update($request)
     // {
