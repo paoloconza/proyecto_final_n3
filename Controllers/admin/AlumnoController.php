@@ -23,7 +23,6 @@ class AlumnoController
     public function edit($id)
     {
         $alumno = $this->model->find($id);
-
         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalEdit.php";
     }
 

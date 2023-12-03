@@ -21,23 +21,8 @@ class LoginController
     public function login($email)
     {
         $usuario = $this->model->where("correo", "=", $email);
-        // var_dump($usuario[0]);
-        if (count($usuario) === 1) {
-            // switch ($usuario[0]["rol_id"]) {
-            //     case '1':
-            //         echo "eres admin";
-            //         break;
-            //     case '2':
-            //         echo "eres maestro";
-            //         break;
-            //     case '3':
-            //         echo "eres alumno";
-            //         break;
 
-            //     default:
-            //         echo "no tienes rol";
-            //         break;
-            // }
+        if (count($usuario) === 1) {
 
             session_start();
             $_SESSION["user"] = $usuario[0];
