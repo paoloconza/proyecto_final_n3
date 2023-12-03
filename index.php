@@ -49,6 +49,12 @@ if ($method === "POST") {
             $alumnoController->update($_POST);
             break;
 
+        case '/maestros/update':
+            $maestroController->update($_POST);
+            // include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalEditMaestro.php";
+
+            break;
+
         case '/administrarClase/create':
             $inscripcionController->store($_POST["alumno_id"], $_POST["clase_id"]);
             break;
