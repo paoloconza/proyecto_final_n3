@@ -16,7 +16,6 @@ class ClaseController
         $clases = $this->model->getClasesInscritos();
 
         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/readClase.php";
-        include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/readMaestro.php";
     }
 
     // public function edit($id)

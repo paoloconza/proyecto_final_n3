@@ -1,11 +1,11 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/LoginController.php");
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/AlumnoController.php");
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/MaestroController.php");
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/ClaseController.php");
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/PermisoController.php");
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/CalificacionController.php");
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/AdmClaseController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/admin/AlumnoController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/admin/MaestroController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/admin/ClaseController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/admin/PermisoController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/alumno/CalificacionController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/alumno/AdmClaseController.php");
 
 // ENRUTADOR
 $loginController = new LoginController();
@@ -30,6 +30,10 @@ if ($method === "POST") {
 
         case '/alumnos/delete':
             $alumnoController->delete($_POST["id"]);
+            break;
+
+        case '/maestros/delete':
+            $maestroController->delete($_POST["id"]);
             break;
 
         case '/alumnos/create':
@@ -63,6 +67,10 @@ if ($method === "GET") {
 
         case '/alumnos/edit':
             $alumnoController->edit($_GET["id"]);
+            break;
+
+        case '/maestros/edit':
+            $maestroController->edit($_GET["id"]);
             break;
 
         case '/alumnos':
