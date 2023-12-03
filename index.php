@@ -40,6 +40,10 @@ if ($method === "POST") {
             $alumnoController->store($_POST);
             break;
 
+        case '/maestros/create':
+            $maestroController->store($_POST);
+            break;
+
         case '/alumnos/update':
             // var_dump($_POST);
             $alumnoController->update($_POST);
