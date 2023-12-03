@@ -45,23 +45,23 @@ class Model
 
     public function getClasesInscritos()
     {
-        $query = "select
-        c.clase as clase,
-        concat(u_maestro.nombre, ' ', u_maestro.apellido) as maestro,
-        count(ac.usuario_id) as alumnosinscritos
-    from
+        $query = "SELECT
+        c.clase AS clase,
+        CONCAT(u.nombre, ' ', u.apellido) AS maestro,
+        COUNT(ac.usuario_id) AS alumnos_inscritos
+    FROM
         clases c
-    left join
-        maestros_clases mc on
-        c.id = mc.clase_id
-    left join
-        usuarios u_maestro on
-        mc.usuario_id = u_maestro.id_usuario
-    left join
-        alumnos_clases ac on
-        c.id = ac.clase_id
-    group by
-        c.id";
+    JOIN
+        usuarios u ON u.clase_id = c.id
+    LEFT JOIN
+        alumnos_clases ac ON ac.clase_id = c.id
+    WHERE
+        u.rol_id = 2
+    GROUP BY
+        c.id, u.id_usuario
+    ORDER BY
+        c.clase";
+
         $res = $this->db->query($query);
         $data = $res->fetch_all(MYSQLI_ASSOC);
 
