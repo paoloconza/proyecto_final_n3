@@ -25,14 +25,20 @@ class MaestroController
     public function edit($id)
     {
         $maestro = $this->model->find($id);
+        $clases = $this->claseModel->all();
+
         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalEditMaestro.php";
     }
-
+    
     public function update($request)
     {
-        $this->model->update($request);
-
+        
+        
+        $this->model->updateMaestro($request);
+        
         header("Location: /maestros");
+        
+        // var_dump($request);
     }
 
     public function store($request)

@@ -172,6 +172,27 @@ class Model
         $res = $this->db->query("UPDATE usuarios SET nombre = '$nombre', apellido = '$apellido', dni = '$dni', fecha_nacimiento = '$fecha', direccion = '$direccion', correo = '$correo' WHERE id_usuario = {$_SESSION["id_usuario"]}");
     }
 
+    public function updateMaestro($data)
+    {
+        session_start();
+        // Verifica si los datos necesarios están presentes antes de intentar acceder a ellos
+        var_dump($_SESSION["id_usuario"]);
+
+        $correo = $data["email"];
+        $nombre = $data["nombre"];
+        $apellido = $data["apellido"];
+        $direccion = $data["direccion"];
+        $fecha = $data["fecha"];
+        $clase = $data["clase"];
+        $clase = isset($data["clase"]) ? $data["clase"] : "{$_SESSION["clase_id"]}";
+
+
+
+        // $id = $data["id"];
+        var_dump($clase);
+        $res = $this->db->query("UPDATE usuarios SET nombre = '$nombre', apellido = '$apellido', fecha_nacimiento = '$fecha', direccion = '$direccion', correo = '$correo', clase_id = '$clase' WHERE id_usuario = {$_SESSION["id_usuario"]}");
+    }
+
     public function destroy($id)
     {
         $this->db->query("delete from {$this->table} where id_usuario = $id");
