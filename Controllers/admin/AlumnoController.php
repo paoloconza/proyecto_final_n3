@@ -35,7 +35,7 @@ class AlumnoController
 
     public function store($request)
     {
-        $response = $this->model->create($request);
+        $response = $this->model->create($request, 3);
         header("Location: /alumnos");
     }
 

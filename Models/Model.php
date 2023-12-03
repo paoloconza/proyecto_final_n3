@@ -113,7 +113,28 @@ class Model
         return $data;
     }
 
-    public function create($data)
+    public function createMaestro($data, $id)
+    {
+        $correo = $data["email"];
+        $nombre = $data["nombre"];
+        $apellido = $data["apellido"];
+        $direccion = $data["direccion"];
+        $fecha = $data["fecha"];
+        $clase = $data["clase"];
+        $res = $this->db->query("insert into {$this->table}(nombre, apellido, fecha_nacimiento, direccion, correo, contrasena,rol_id, clase_id) values ('$nombre', '$apellido', '$fecha', '$direccion', '$correo', 'maestro', '$id', '$clase')");
+
+        if ($res) {
+            $ultimoId = $this->db->insert_id;
+            $res = $this->db->query("select * from usuarios where id_usuario = $ultimoId");
+            $data = $res->fetch_assoc();
+
+            return $data;
+        } else {
+            return "No se pudo crear el usuario";
+        }
+    }
+
+    public function create($data, $id)
     {
         $dni = $data["dni"];
         $correo = $data["email"];
@@ -121,7 +142,7 @@ class Model
         $apellido = $data["apellido"];
         $direccion = $data["direccion"];
         $fecha = $data["fecha"];
-        $res = $this->db->query("insert into usuarios(nombre, apellido, dni, fecha_nacimiento, direccion, correo, contrasena, rol_id) values ('$nombre', '$apellido', '$dni', '$fecha', '$direccion', '$correo', 'alumno', '3')");
+        $res = $this->db->query("insert into usuarios(nombre, apellido, dni, fecha_nacimiento, direccion, correo, contrasena, rol_id) values ('$nombre', '$apellido', '$dni', '$fecha', '$direccion', '$correo', 'alumno', '$id')");
 
         if ($res) {
             $ultimoId = $this->db->insert_id;
