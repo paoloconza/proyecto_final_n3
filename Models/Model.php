@@ -33,8 +33,6 @@ class Model
         return $data;
     }
 
-<<<<<<< HEAD
-=======
     public function whereMaestro($column, $operator, $value)
     {
         $res = $this->db->query("select u.id_usuario, u.nombre, u.apellido, u.fecha_nacimiento, u.direccion, u.correo, u.rol_id, c.clase
@@ -45,7 +43,6 @@ class Model
         return $data;
     }
 
->>>>>>> test
     public function getClasesInscritos()
     {
         $query = "SELECT
@@ -118,14 +115,6 @@ class Model
         return $data;
     }
 
-<<<<<<< HEAD
-    /**
-     * Método para crear un nuevo registro en la tabla.
-     *
-     * @param array $data Arreglo asociativo con los datos a ingresar.
-     * @return array Arreglo con los datos de la fila ingresada.
-     */
-=======
     public function findClase($id)
     {
         $res = $this->db->query("select * from {$this->table} where id = $id");
@@ -154,7 +143,6 @@ class Model
             return "No se pudo crear el usuario";
         }
     }
->>>>>>> test
 
     public function create($data, $id)
     {
@@ -177,18 +165,6 @@ class Model
         }
     }
 
-<<<<<<< HEAD
-    /**
-     * Método para actualizar un registro en la tabla.
-     *
-     * @param array $data Arreglo asociatvo con los datos a actualizar.
-     */
-    public function update($data)
-    {
-        session_start();
-
-        // Verifica si los datos necesarios están presentes antes de intentar acceder a ellos
-=======
     public function createClase($data)
     {
         $materia = $data["clase"];
@@ -217,7 +193,6 @@ class Model
     public function update($data)
     {
         session_start();
->>>>>>> test
         var_dump($_SESSION["id_usuario"]);
         $dni = $data["dni"];
         $correo = $data["email"];
@@ -225,12 +200,11 @@ class Model
         $apellido = $data["apellido"];
         $direccion = $data["direccion"];
         $fecha = $data["fecha"];
+        // $id = $data["id"];
 
         $res = $this->db->query("UPDATE usuarios SET nombre = '$nombre', apellido = '$apellido', dni = '$dni', fecha_nacimiento = '$fecha', direccion = '$direccion', correo = '$correo' WHERE id_usuario = {$_SESSION["id_usuario"]}");
     }
 
-<<<<<<< HEAD
-=======
     public function updateMaestro($data)
     {
         session_start();
@@ -265,7 +239,6 @@ class Model
         $res = $this->db->query("UPDATE usuarios SET rol_id = '$rol' WHERE correo = '{$_SESSION["email"]}'");
     }
 
->>>>>>> test
     public function destroy($id)
     {
         $this->db->query("delete from {$this->table} where id_usuario = $id");
@@ -285,18 +258,6 @@ class Model
     public function where($column, $operator, $value)
     {
         $res = $this->db->query("select * from {$this->table} where $column $operator '$value'");
-        $data = $res->fetch_all(MYSQLI_ASSOC);
-        return $data;
-    }
-
-    public function whereMaestroAdmin($column, $operator, $value)
-    {
-
-        $res = $this->db->query("select u.id_usuario, u.nombre, u.apellido, u.fecha_nacimiento, u.direccion, u.correo, u.rol_id, c.clase
-        from usuarios u
-        join clases c on u.clase_id = c.id
-        where u.$column $operator '$value'");
-        // $res = $this->db->query("select * from {$this->table} where $column $operator '$value'");
         $data = $res->fetch_all(MYSQLI_ASSOC);
         return $data;
     }
