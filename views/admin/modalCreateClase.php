@@ -17,19 +17,19 @@
             </div>
             <!-- Modal body -->
             <div class="p-2.5">
-                <form class="space-y-2.5" action="/alumnos/create" method="post">
+                <form class="space-y-2.5" action="/clases/create" method="post">
 
                     <div>
-                        <label for="nombre" class="block mb-1.5 text-xs font-medium text-gray-900 ">Nombre de la Materia</label>
-                        <input type="text" name="nombre" id="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-[11px] rounded focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1" placeholder="Ingrese el nombre" required>
+                        <label for="clase" class="block mb-1.5 text-xs font-medium text-gray-900 ">Nombre de la Materia</label>
+                        <input type="text" name="clase" id="clase" class="bg-gray-50 border border-gray-300 text-gray-900 text-[11px] rounded focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1" placeholder="Ingrese el nombre" required>
                     </div>
 
                     <div>
-                        <label for="clase" class="block mb-1 text-xs font-medium text-gray-900 mr-3">Maestros disponibles para la clase</label>
-                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-[11px] rounded focus:ring-blue-500 focus:border-blue-500  w-full px-2 py-1" id="clase" name="clase">
+                        <label for="nombre" class="block mb-1 text-xs font-medium text-gray-900 mr-3">Maestros disponibles para la clase</label>
+                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-[11px] rounded focus:ring-blue-500 focus:border-blue-500  w-full px-2 py-1" id="nombre" name="nombre">
                             <option value="" disabled selected>Seleccione al maestro</option>
                             <?php foreach ($maestros as $maestro) { ?>
-                                <option id="clase"><?= $maestro["nombre"] . " " . $maestro["apellido"] ?></option>
+                                <option id="nombre"><?=$maestro["id_usuario"] . " " . $maestro["nombre"] . " " . $maestro["apellido"] ?></option>
                             <?php } ?>
                         </select>
                     </div>
