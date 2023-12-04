@@ -1,8 +1,8 @@
 <?php
-// !isset($clases) && header("Location: /clases");
-// session_start();
+!isset($clase) && header("Location: /clases");
+session_start();
 // $_SESSION["id_usuario"] = $clases["id_usuario"];
-// $_SESSION["clase_id"] = $clases["clase_id"];
+$_SESSION["cl_id"] = $clase["id"];
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
                     <h3 class="text-xl font-semibold text-gray-900 ">
                         Editar Clase
                         <?php
-                        var_dump($response);
+                        var_dump($_SESSION["cl_id"]);
                         ?>
 
                     </h3>
@@ -38,19 +38,19 @@
                 </div>
                 <!-- Modal body -->
                 <div class="p-2.5">
-                    <form class="space-y-2.5" action="/maestros/update" method="post">
+                    <form class="space-y-2.5" action="/clases/update" method="post">
 
                         <div>
-                            <label for="nombre" class="block mb-1.5 text-xs font-medium text-gray-900 ">Nombre de la Materia</label>
-                            <input type="text" name="nombre" id="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-[11px] rounded focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1" value="<?= $clase["clase"] ?>" required>
+                            <label for="clase" class="block mb-1.5 text-xs font-medium text-gray-900 ">Nombre de la Materia</label>
+                            <input type="text" name="clase" id="clase" class="bg-gray-50 border border-gray-300 text-gray-900 text-[11px] rounded focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1" value="<?= $clase["clase"] ?>" required>
                         </div>
 
                         <div>
-                            <label for="clase" class="block mb-1 text-xs font-medium text-gray-900 mr-3">Maestros disponibles para la clase</label>
-                            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-[11px] rounded focus:ring-blue-500 focus:border-blue-500  w-full px-2 py-1" id="clase" name="clase">
+                            <label for="maestro" class="block mb-1 text-xs font-medium text-gray-900 mr-3">Maestros asignado</label>
+                            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-[11px] rounded focus:ring-blue-500 focus:border-blue-500  w-full px-2 py-1" id="maestro" name="maestro">
                                 <option disabled selected>Seleccione al maestro</option>
                                 <?php foreach ($maestros as $maestro) { ?>
-                                    <option id="clase"><?= $maestro["nombre"] . " " . $maestro["apellido"] ?></option>
+                                    <option id="maestro"><?=$maestro["id_usuario"] . " " . $maestro["nombre"] . " " . $maestro["apellido"] ?></option>
                                 <?php } ?>
                             </select>
                         </div>

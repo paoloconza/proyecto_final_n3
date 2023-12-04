@@ -24,24 +24,25 @@ class ClaseController
 
     public function edit($id)
     {
-        // $maestros = $this->model->find($id);
+        $clase = $this->claseModel->findClase($id);
+        $maestros = $this->model->where("rol_id", "=", 2);
+
         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalEditClase.php";
     }
 
     public function store($request)
     {
-        // $id = $this->model->createClase($request);
-        $response = $this->model->updateClaseM($request);
+        $response = $this->model->createClase($request);
 
-        header("Location: /maestros");
+        header("Location: /clases");
     }
 
-    // public function update($request)
-    // {
-    //     $this->model->update($request);
+    public function update($request)
+    {
+        $this->model->updateClase($request);
 
-    //     header("Location: /empleados");
-    // }
+        header("Location: /clases");
+    }
 
     // public function delete($id)
     // {
