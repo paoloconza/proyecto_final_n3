@@ -32,8 +32,6 @@ class MaestroController
     
     public function update($request)
     {
-        
-        
         $this->model->updateMaestro($request);
         
         header("Location: /maestros");

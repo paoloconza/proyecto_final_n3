@@ -115,6 +115,14 @@ class Model
         return $data;
     }
 
+    public function findClase($id)
+    {
+        $res = $this->db->query("select * from {$this->table} where id = $id");
+        $data = $res->fetch_assoc();
+
+        return $data;
+    }
+
     public function createMaestro($data, $id)
     {
         $correo = $data["email"];
@@ -157,7 +165,7 @@ class Model
         }
     }
 
-    public function updateClaseM($data)
+    public function createClase($data)
     {
         $materia = $data["clase"];
         $nombre = $data["nombre"];
@@ -185,8 +193,6 @@ class Model
     public function update($data)
     {
         session_start();
-
-        // Verifica si los datos necesarios están presentes antes de intentar acceder a ellos
         var_dump($_SESSION["id_usuario"]);
         $dni = $data["dni"];
         $correo = $data["email"];
@@ -202,8 +208,6 @@ class Model
     public function updateMaestro($data)
     {
         session_start();
-        // Verifica si los datos necesarios están presentes antes de intentar acceder a ellos
-        var_dump($_SESSION["id_usuario"]);
 
         $correo = $data["email"];
         $nombre = $data["nombre"];
@@ -213,11 +217,20 @@ class Model
         $clase = $data["clase"];
         $clase = isset($data["clase"]) ? $data["clase"] : "{$_SESSION["clase_id"]}";
 
-
-
-        // $id = $data["id"];
         var_dump($clase);
         $res = $this->db->query("UPDATE usuarios SET nombre = '$nombre', apellido = '$apellido', fecha_nacimiento = '$fecha', direccion = '$direccion', correo = '$correo', clase_id = '$clase' WHERE id_usuario = {$_SESSION["id_usuario"]}");
+    }
+
+    public function updateClase($data)
+    {
+        session_start();
+
+        $nombre = $data["maestro"];
+        // $clase = $data["clase"];
+
+        // $clase = isset($data["clase"]) ? $data["clase"] : "{$_SESSION["cl_id"]}";
+
+        $res = $this->db->query("UPDATE usuarios SET clase_id = '{$_SESSION["cl_id"]}' WHERE id_usuario = '$nombre'");
     }
 
     public function destroy($id)

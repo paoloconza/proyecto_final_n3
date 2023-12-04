@@ -55,8 +55,10 @@ if ($method === "POST") {
 
         case '/maestros/update':
             $maestroController->update($_POST);
-            // include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalEditMaestro.php";
+            break;
 
+        case '/clases/update':
+            $claseController->update($_POST);
             break;
 
         case '/administrarClase/create':
