@@ -97,6 +97,10 @@ if ($method === "GET") {
             $claseController->edit($_GET["id"]);
             break;
 
+        case '/permisos/edit':
+            $permisoController->edit($_GET["id"]);
+            break;
+
         case '/alumnos':
             $alumnoController->index();
             break;

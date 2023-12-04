@@ -72,7 +72,7 @@ class Model
 
     public function getRol()
     {
-        $query = "select u.correo, r.nombre_rol from usuarios u join roles r on
+        $query = "select u.id_usuario, u.correo, r.nombre_rol from usuarios u join roles r on
         u.rol_id = r.id_rol";
 
         $res = $this->db->query($query);
