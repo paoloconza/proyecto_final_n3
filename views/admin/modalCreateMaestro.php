@@ -40,10 +40,15 @@
                         <input type="date" name="fecha" id="fecha" class="bg-gray-50 border border-gray-300 text-gray-900 text-[11px] rounded focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1">
                     </div>
                     <div class="flex items-center">
-                        <label for="dni" class="block mb-1 text-xs font-medium text-gray-900 mr-3">Clase Asignada</label>
-                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-[11px] rounded focus:ring-blue-500 focus:border-blue-500  w-3/6 px-2 py-1" id="opciones" name="opciones" multiple>
+                        <label for="clase" class="block mb-1 text-xs font-medium text-gray-900 mr-3">Clase Asignada</label>
+                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-[11px] rounded focus:ring-blue-500 focus:border-blue-500  w-3/6 px-2 py-1" id="clase" name="clase">
                             <option value="" disabled selected>Seleccione su clase</option>
-                                <option>lista de las clases</option>
+                            <?php
+                            foreach ($clases as $clase) {
+                            ?>
+                            <option id="clase"><?= $clase["id"] . " " . $clase["clase"]?></option>
+                                <?php }
+                                ?>
 
                         </select>
                     </div>

@@ -1,11 +1,11 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/LoginController.php");
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/AlumnoController.php");
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/MaestroController.php");
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/ClaseController.php");
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/PermisoController.php");
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/CalificacionController.php");
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/AdmClaseController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/admin/AlumnoController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/admin/MaestroController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/admin/ClaseController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/admin/PermisoController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/alumno/CalificacionController.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/Controllers/alumno/AdmClaseController.php");
 
 // ENRUTADOR
 $loginController = new LoginController();
@@ -32,13 +32,41 @@ if ($method === "POST") {
             $alumnoController->delete($_POST["id"]);
             break;
 
+        case '/maestros/delete':
+            $maestroController->delete($_POST["id"]);
+            break;
+
+        case '/clases/delete':
+            $claseController->delete($_POST["id"]);
+            break;
+
         case '/alumnos/create':
             $alumnoController->store($_POST);
+            break;
+
+        case '/maestros/create':
+            $maestroController->store($_POST);
+            break;
+
+        case '/clases/create':
+            $claseController->store($_POST);
             break;
 
         case '/alumnos/update':
             // var_dump($_POST);
             $alumnoController->update($_POST);
+            break;
+
+        case '/maestros/update':
+            $maestroController->update($_POST);
+            break;
+
+        case '/clases/update':
+            $claseController->update($_POST);
+            break;
+
+        case '/permisos/update':
+            $permisoController->update($_POST);
             break;
 
         case '/administrarClase/create':
@@ -63,6 +91,18 @@ if ($method === "GET") {
 
         case '/alumnos/edit':
             $alumnoController->edit($_GET["id"]);
+            break;
+
+        case '/maestros/edit':
+            $maestroController->edit($_GET["id"]);
+            break;
+
+        case '/clases/edit':
+            $claseController->edit($_GET["id"]);
+            break;
+
+        case '/permisos/edit':
+            $permisoController->edit($_GET["id"]);
             break;
 
         case '/alumnos':

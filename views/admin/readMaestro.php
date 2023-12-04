@@ -56,7 +56,11 @@
 
             <nav class="bg-white">
                 <div class="relative flex items-center justify-between h-10 m-2">
+<<<<<<< HEAD
                     <div class="flex-1 flex items-center justify-center  sm:justify-start">
+=======
+                    <div class="flex-1 flex items-center justify-center sm:justify-start">
+>>>>>>> test
                         <button id="sidebarBtn" class="px-4 py-2 text-gray-700 text-sm rounded-lg hover:bg-gray-200">
                             <i class="fas fa-bars"></i>
                         </button>
@@ -123,8 +127,8 @@
                                     <td><?= $maestro["fecha_nacimiento"] ?></td>
                                     <td><?= $maestro["clase"] ?></td>
                                     <td class="flex">
-                                        <a class="mr-5" href="/alumnos/edit?id=<?= $maestro["id_usuario"] ?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
-                                        <form action="/alumnos/delete" method="post">
+                                        <a class="mr-5" href="/maestros/edit?id=<?= $maestro["id_usuario"] ?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
+                                        <form action="/maestros/delete" method="post">
                                             <input type="number" hidden value="<?= $maestro["id_usuario"] ?>" name="id">
                                             <button type="submit"><i class="fa-regular fa-trash-can" style="color: #bc5c65;"></i></button>
                                         </form>
@@ -135,6 +139,7 @@
                             ?>
                         </tbody>
                     </table>
+                    
                 </div>
             </div>
         </div>

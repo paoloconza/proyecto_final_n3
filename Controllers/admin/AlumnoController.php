@@ -23,7 +23,6 @@ class AlumnoController
     public function edit($id)
     {
         $alumno = $this->model->find($id);
-
         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalEdit.php";
     }
 
@@ -36,7 +35,7 @@ class AlumnoController
 
     public function store($request)
     {
-        $response = $this->model->create($request);
+        $response = $this->model->create($request, 3);
         header("Location: /alumnos");
     }
 
