@@ -65,6 +65,10 @@ if ($method === "POST") {
             $claseController->update($_POST);
             break;
 
+        case '/permisos/update':
+            $permisoController->update($_POST);
+            break;
+
         case '/administrarClase/create':
             $inscripcionController->store($_POST["alumno_id"], $_POST["clase_id"]);
             break;
@@ -95,6 +99,10 @@ if ($method === "GET") {
 
         case '/clases/edit':
             $claseController->edit($_GET["id"]);
+            break;
+
+        case '/permisos/edit':
+            $permisoController->edit($_GET["id"]);
             break;
 
         case '/alumnos':

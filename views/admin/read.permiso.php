@@ -98,7 +98,6 @@
                                 <th class="text-left">#</th>
                                 <th class="text-left">Email/usuario</th>
                                 <th class="text-left">Permiso</th>
-                                <th class="text-left">Estado</th>
                                 <th class="text-left">Acciones</th>
                             </tr>
                         </thead>
@@ -111,13 +110,8 @@
                                     <td><?= $counter++?></td>
                                     <td><?= $permiso["correo"] ?></td>
                                     <td><?= $permiso["nombre_rol"] ?></td>
-                                    <td><?= $permiso["nombre_rol"] ?></td>
                                     <td class="flex">
-                                        <a class="mr-5" href="/alumnos/edit?id=<?= $maestro["id_usuario"] ?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
-                                        <form action="/alumnos/delete" method="post">
-                                            <input type="number" hidden value="<?= $maestro["id_usuario"] ?>" name="id">
-                                            <button type="submit"><i class="fa-regular fa-trash-can" style="color: #bc5c65;"></i></button>
-                                        </form>
+                                        <a class="mr-5" href="/permisos/edit?id=<?= $permiso["id_usuario"] ?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
                                     </td>
                                 </tr>
                             <?php
@@ -129,8 +123,6 @@
             </div>
         </div>
     </main>
-
-    <script src="main.js"></script>
 
 </body>
 
