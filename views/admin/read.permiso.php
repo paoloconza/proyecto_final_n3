@@ -123,6 +123,8 @@
             </div>
         </div>
     </main>
+    <script src="main.js"></script>
+
 
 </body>
 
