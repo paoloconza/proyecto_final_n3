@@ -4,10 +4,13 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/Models/Model.php";
 class ClaseController
 {
     protected $model;
+    protected $claseModel;
 
     public function __construct()
     {
         $this->model = new User();
+        $this->claseModel = new Clase();
+
     }
 
     public function index()
@@ -22,7 +25,15 @@ class ClaseController
     public function edit($id)
     {
         // $maestros = $this->model->find($id);
-        include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalEdit.Clase.php";
+        include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalEditClase.php";
+    }
+
+    public function store($request)
+    {
+        // $id = $this->model->createClase($request);
+        $response = $this->model->updateClaseM($request);
+
+        header("Location: /maestros");
     }
 
     // public function update($request)

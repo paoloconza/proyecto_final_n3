@@ -46,9 +46,11 @@ class Model
     public function getClasesInscritos()
     {
         $query = "SELECT
-        c.clase AS clase,
-        CONCAT(u.nombre, ' ', u.apellido) AS maestro,
-        COUNT(ac.usuario_id) AS alumnos_inscritos
+        c.id as clase_id,
+        c.clase,
+        u.id_usuario,
+        CONCAT(u.nombre, ' ', u.apellido) as maestro,
+        COUNT(ac.usuario_id) as alumnos_inscritos
     FROM
         clases c
     JOIN
@@ -152,6 +154,31 @@ class Model
             return $data;
         } else {
             return "No se pudo crear el cliente";
+        }
+    }
+
+    public function updateClaseM($data)
+    {
+        $materia = $data["clase"];
+        $nombre = $data["nombre"];
+
+        $resInsert = $this->db->query("INSERT INTO clases (clase) VALUES ('$materia')");
+
+        if ($resInsert) {
+            $ultimoId = $this->db->insert_id;
+
+            $resUpdate = $this->db->query("UPDATE usuarios SET clase_id = '$ultimoId' WHERE id_usuario = '$nombre'");
+
+            if ($resUpdate) {
+                $resSelect = $this->db->query("SELECT * FROM clases WHERE id = $ultimoId");
+                $data = $resSelect->fetch_assoc();
+
+                return $data;
+            } else {
+                return "No se pudo actualizar el usuario con la nueva clase";
+            }
+        } else {
+            return "No se pudo insertar la nueva clase";
         }
     }
 
