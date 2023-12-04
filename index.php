@@ -36,6 +36,10 @@ if ($method === "POST") {
             $maestroController->delete($_POST["id"]);
             break;
 
+        case '/clases/delete':
+            $claseController->delete($_POST["id"]);
+            break;
+
         case '/alumnos/create':
             $alumnoController->store($_POST);
             break;
