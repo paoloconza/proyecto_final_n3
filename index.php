@@ -65,6 +65,10 @@ if ($method === "POST") {
             $claseController->update($_POST);
             break;
 
+        case '/permisos/update':
+            $permisoController->update($_POST);
+            break;
+
         case '/administrarClase/create':
             $inscripcionController->store($_POST["alumno_id"], $_POST["clase_id"]);
             break;

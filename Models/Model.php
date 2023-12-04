@@ -226,11 +226,17 @@ class Model
         session_start();
 
         $nombre = $data["maestro"];
-        // $clase = $data["clase"];
-
-        // $clase = isset($data["clase"]) ? $data["clase"] : "{$_SESSION["cl_id"]}";
 
         $res = $this->db->query("UPDATE usuarios SET clase_id = '{$_SESSION["cl_id"]}' WHERE id_usuario = '$nombre'");
+    }
+
+    public function updatePermiso($data)
+    {
+        session_start();
+
+        $rol = $data["roll"];
+
+        $res = $this->db->query("UPDATE usuarios SET rol_id = '$rol' WHERE correo = '{$_SESSION["email"]}'");
     }
 
     public function destroy($id)

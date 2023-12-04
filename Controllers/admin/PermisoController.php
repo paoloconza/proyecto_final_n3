@@ -24,23 +24,15 @@ class PermisoController
     public function edit($id)
     {
         $roll = $this->rollModel->all();
-        // $permiso = $this->model->find($id);
+        $permiso = $this->model->find($id);
         include $_SERVER["DOCUMENT_ROOT"] . "/views/admin/modalEditPermiso.php";
     }
 
-    // public function update($request)
-    // {
-    //     $this->model->update($request);
+    public function update($request)
+    {
+        $this->model->updatePermiso($request);
 
-    //     header("Location: /empleados");
-    // }
-
-    // public function delete($id)
-    // {
-
-    //     $this->model->destroy($id);
-
-    //     header("Location: /empleados");
-    // }
+        header("Location: /permisos");
+    }
 
 }
