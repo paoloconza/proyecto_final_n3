@@ -120,7 +120,7 @@
                                     <td><?= $clase["alumnos_inscritos"] ?></td>
                                     <td class="flex">
                                         <a class="mr-5" href="/clases/edit?id=<?= $clase["clase_id"] ?>"><i class="fa-solid fa-pen-to-square" style="color: #5094a6;"></i></a>
-                                        <form action="/alumnos/delete" method="post">
+                                        <form action="/clases/delete" method="post">
                                             <input type="number" hidden value="<?= $clase["clase_id"] ?>" name="id">
                                             <button type="submit"><i class="fa-regular fa-trash-can" style="color: #bc5c65;"></i></button>
                                         </form>

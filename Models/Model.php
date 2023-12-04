@@ -238,6 +238,17 @@ class Model
         $this->db->query("delete from {$this->table} where id_usuario = $id");
     }
 
+    public function destroyClase($id)
+    {
+        // $this->db->query("delete from {$this->table} where id = $id");
+
+        // Actualizar la columna clase_id de los usuarios asociados a NULL
+        $this->db->query("UPDATE usuarios SET clase_id = NULL WHERE clase_id = $id");
+
+        // Eliminar la clase
+        $this->db->query("DELETE FROM {$this->table} WHERE id = $id");
+    }
+
     public function where($column, $operator, $value)
     {
         $res = $this->db->query("select * from {$this->table} where $column $operator '$value'");

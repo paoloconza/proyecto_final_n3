@@ -44,12 +44,12 @@ class ClaseController
         header("Location: /clases");
     }
 
-    // public function delete($id)
-    // {
+    public function delete($id)
+    {
 
-    //     $this->model->destroy($id);
+        $this->claseModel->destroyClase($id);
 
-    //     header("Location: /empleados");
-    // }
+        header("Location: /clases");
+    }
 
 }
